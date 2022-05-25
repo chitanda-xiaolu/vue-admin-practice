@@ -22,7 +22,9 @@ export default {
     AppMain
   },
   computed: {
-
+    classObj () {
+      return {}
+    }
   }
 }
 </script>
