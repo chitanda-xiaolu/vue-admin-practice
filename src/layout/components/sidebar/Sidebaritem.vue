@@ -1,9 +1,78 @@
 <template>
-  <div>Sidebaritem</div>
+  <div v-if="!item.hidden">
+    Sidebaritem
+    <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOnechildnoShowingChildren)&&!item.alwaysShow">
+      <app-link v-if="onlyOneChild.meta" to="resolvePath(onlyOneChild.path)">
+        <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="submenu-title-noDropdown">
+          <item :icon="onlyOneChild.meta.icon||(item.meta&&item.meta.icon)" :title="onlyOneChild.meta.title"/>
+        </el-menu-item>
+      </app-link>
+    </template>
+  </div>
 </template>
 
 <script>
+import path from 'path'
+import { isExternal } from '@/utils/validate'
+import Item from './item'
+import AppLink from './Link'
+import FixiOSBug from './FixiOSBug'
+
 export default {
+  name: 'SidebarItem',
+  components: { Item, AppLink },
+  mixins: [FixiOSBug],
+  props: {
+    item: {
+      type: Object,
+      require: true
+    },
+    isNest: {
+      type: Boolean,
+      default: false
+    },
+    basePath: {
+      type: String,
+      default: ''
+    }
+  },
+  data () {
+    this.onlyOneChild = null
+    return {}
+  },
+  methods: {
+    hasOneShowingChild (children = [], parent) {
+      const showingChildren = children.filter(item => {
+        if (item.hidden) {
+          return false
+        } else {
+          this.onlyOneChild = item
+          return true
+        }
+      })
+
+      if (showingChildren.length === 1) {
+        return true
+      }
+
+      if (showingChildren.length === 0) {
+        this.onlyOneChild = { ...parent, path: '', noShowingChildren: true }
+        return true
+      }
+
+      return false
+    },
+    resolvePath (routPath) {
+      if (isExternal(routPath)) {
+        return routPath
+      }
+      if (isExternal(this.basePath)) {
+        return this.basePath
+      }
+
+      return path.resolve(this.basePath, routPath)
+    }
+  }
 
 }
 </script>
