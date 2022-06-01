@@ -1,5 +1,6 @@
 <template>
   <div :class="{'has-logo': showLogo}">
+    sidebar
     <logo v-if="showLogo" :collapse="isCollapase"/>
     <el-scrollbar wrap-class="scrollbar-wrapper">
     <el-menu
@@ -32,9 +33,9 @@ export default {
       return this.$router.options.routes
     },
     activeMenu () {
-      const route = this.routes
+      const route = this.$route
       const { meta, path } = route
-
+      // if set path, the sidebar will highlight the path you set
       if (meta.activeMenu) {
         return meta.activeMenu
       }
