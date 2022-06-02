@@ -1,5 +1,9 @@
 <template>
-  <div>Navbar</div>
+  <div>
+    Navbar
+    <!-- <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <breadcrumb class="breadcrumb-container" /> -->
+  </div>
 </template>
 
 <script>
