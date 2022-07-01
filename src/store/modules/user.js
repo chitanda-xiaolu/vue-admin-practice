@@ -1,7 +1,6 @@
-import { login, logout, getInfo }from '@/api/user'
+import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
-import { reject } from 'core-js/fn/promise'
 
 const getDefaultState = () => {
   return {
@@ -42,8 +41,7 @@ const actions = {
         reject(error)
       })
     })
-  }
-
+  },
   // get user info
   getInfo ({ commit, state }) {
     return new Promise((resolve, reject) => {
@@ -51,18 +49,42 @@ const actions = {
         const { data } = response
 
         if (!data) {
+          // eslint-disable-next-line prefer-promise-reject-errors
           return reject('Verification failed, please Login again.')
-          const { name, avatar } = data
-
-          commit('SET_NAME', name)
-          commit('SET_AVATAR', avatar)
-          resolve(data)
         }
+
+        const { name, avatar } = data
+
+        commit('SET_NAME', name)
+        commit('SET_AVATAR', avatar)
+        resolve(data)
       }).catch(error => {
         reject(error)
       })
     })
+  },
+  // user logout
+  logout ({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      logout(state.token).then(() => {
+        removeToken() // must remove  token  first
+        resetRouter()
+        commit('RESET_STATE')
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  // remove token
+  resetToken ({ commit }) {
+    return new Promise(resolve => {
+      removeToken() // must remove  token  first
+      commit('RESET_STATE')
+      resolve()
+    })
   }
+
 }
 
 export default {
