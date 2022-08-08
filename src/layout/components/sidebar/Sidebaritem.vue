@@ -77,6 +77,8 @@ export default {
     },
     resolvePath (routPath) {
       if (isExternal(routPath)) {
+        console.log('-------resolvePath------')
+        console.log(routPath)
         return routPath
       }
       if (isExternal(this.basePath)) {
@@ -85,11 +87,16 @@ export default {
 
       return path.resolve(this.basePath, routPath)
     }
+  },
+  created () {
+    console.log('created===============')
+    console.log(this.item)
+    console.log('created finish===============')
   }
 
 }
 </script>
-
+结束
 <style>
 
 </style>
