@@ -38,6 +38,10 @@ export default {
         to: to
       }
     }
+  },
+  created () {
+    console.log('app link init')
+    console.log(this.to)
   }
 }
 </script>
