@@ -1,5 +1,5 @@
 <template>
-  <component :is="type">
+  <component :is="type" v-bind="linkProps(to)">
     <slot />
   </component>
 </template>
@@ -11,7 +11,7 @@ export default {
   props: {
     to: {
       type: String,
-      require: true
+      required: true
     }
   },
   computed: {
@@ -38,13 +38,10 @@ export default {
         to: to
       }
     }
-  },
-  created () {
-    console.log('app link init')
-    console.log(this.to)
   }
 }
 </script>
+
 /**
 <a> 标签定义超链接，用于从一张页面链接到另一张页面
 也即使说，通过a标签进行跳转，页面会被重新渲染，即相当于重新打开一个新的网页
