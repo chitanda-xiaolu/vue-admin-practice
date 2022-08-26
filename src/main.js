@@ -10,6 +10,7 @@ import '@/styles/index.scss' // global css
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import '@/icons' // icon
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })

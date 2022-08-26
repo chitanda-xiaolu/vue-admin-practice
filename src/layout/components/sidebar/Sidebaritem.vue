@@ -92,18 +92,7 @@ export default {
 
       return path.resolve(this.basePath, routPath)
     }
-  },
-  created () {
-    console.log('sidebar component init start')
-    console.log(this.item)
-    console.log('sidebar component init end')
-    console.log('====onlyOneChild====')
-    console.log(this.item)
-    console.log('====================')
-    // console.log('onlyOneChildren:')
-    // console.log(this.onlyOneChild)
   }
-
 }
 </script>
 <style>

@@ -51,11 +51,6 @@ export default {
     isCollapase () {
       return !this.sidebar.opened
     }
-  },
-  created () {
-    console.log('init routes data')
-    console.log(this.$router.options.routes)
-    console.log('init routes end')
   }
 }
 </script>
