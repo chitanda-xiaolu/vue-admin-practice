@@ -1,11 +1,12 @@
 <template>
-  <div v-if="isExternal" :style="styleExternalIcon" calss="svg-external-icon" v-on="$listeners"/>
+  <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon" v-on="$listeners" />
   <svg v-else :class="svgClass" aria-hidden="true" v-on="$listeners">
-    <use :xlink:herf="iconName" />
+    <use :xlink:href="iconName" />
   </svg>
 </template>
 
 <script>
+// doc: https://panjiachen.github.io/vue-element-admin-site/feature/component/svg-icon.html#usage
 import { isExternal } from '@/utils/validate'
 
 export default {
@@ -15,7 +16,7 @@ export default {
       type: String,
       required: true
     },
-    classNmae: {
+    className: {
       type: String,
       default: ''
     }
