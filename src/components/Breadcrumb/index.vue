@@ -59,6 +59,9 @@ export default {
       }
       this.router.push(this.pathCompile(path))
     }
+  },
+  mounted () {
+    console.log(this.levelList)
   }
 }
 </script>
