@@ -55,10 +55,6 @@ export default {
   },
   methods: {
     hasOneShowingChild (children = [], parent) {
-      // console.log('=====children=====')
-      // console.log(children)
-      // console.log('=====parent======')
-      // console.log(parent)
       const showingChildren = children.filter(item => {
         if (item.hidden) {
           return false
@@ -81,12 +77,9 @@ export default {
     },
     resolvePath (routPath) {
       if (isExternal(routPath)) {
-        // console.log('-------resolvePath------')
-        // console.log(`routePath${routPath}`)
         return routPath
       }
       if (isExternal(this.basePath)) {
-        // console.log(`routePath${this.basePath}`)
         return this.basePath
       }
 
