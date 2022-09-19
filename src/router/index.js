@@ -97,6 +97,30 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/demo',
+    component: Layout,
+    name: 'Demo',
+    redirect: '/demo/demo1',
+    meta: {
+      title: 'Study demo',
+      icon: 'notebook-1'
+    },
+    children: [
+      {
+        path: 'demo1',
+        component: () => import('@/views/demo/demo1/index'),
+        name: 'Demo1',
+        meta: { title: 'Demo1' }
+      },
+      {
+        path: 'demo2',
+        component: () => import('@/views/demo/demo2/index'),
+        name: 'Demo2',
+        meta: { title: 'Demo2' }
+      }
+    ]
+  },
+  {
     path: 'external-link',
     component: Layout,
     children: [
